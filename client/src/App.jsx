@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/test")
+      .get("https://my-portfolio-backend-bdq0.onrender.com/api/test")
       .then((response) => {
         setApiMessage(response.data.message);
         setApiError(false);
