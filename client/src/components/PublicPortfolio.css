@@ -1,0 +1,244 @@
+
+.public-page {
+  --page-bg: #f7f7f4;
+  --page-text: #20221f;
+  --page-muted: #6f736d;
+  --page-card: #ffffff;
+  --page-border: #dedfd8;
+  --page-accent: #4c6752;
+  min-height: 100vh;
+  padding: 0 7%;
+  background: var(--page-bg);
+  color: var(--page-text);
+  font-family: Inter, "DM Sans", Arial, sans-serif;
+}
+
+.public-page * {
+  box-sizing: border-box;
+}
+
+.public-header {
+  min-height: 86px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--page-border);
+}
+
+.public-brand {
+  font-size: 19px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--page-text);
+}
+
+.public-header nav,
+.public-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.public-page a {
+  color: var(--page-accent);
+}
+
+.public-header nav a {
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.public-hero {
+  padding: clamp(70px, 12vw, 145px) 0 100px;
+  max-width: 900px;
+}
+
+.public-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--page-accent);
+}
+
+.public-hero h1 {
+  margin: 18px 0;
+  font-size: clamp(42px, 8vw, 90px);
+  line-height: 1.05;
+  letter-spacing: -4px;
+  overflow-wrap: anywhere;
+}
+
+.public-bio {
+  max-width: 650px;
+  color: var(--page-muted);
+  font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.9;
+}
+
+.public-section {
+  padding: 65px 0;
+  border-top: 1px solid var(--page-border);
+}
+
+.public-section h2 {
+  font-size: clamp(27px, 4vw, 42px);
+  letter-spacing: -1.5px;
+  margin: 15px 0 35px;
+}
+
+.public-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.public-project,
+.public-skills article {
+  min-width: 0;
+  padding: 24px;
+  background: var(--page-card);
+  border: 1px solid var(--page-border);
+  border-radius: 15px;
+}
+
+.public-project img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 9px;
+  margin-bottom: 14px;
+}
+
+.public-project h3,
+.public-skills h3 {
+  font-size: 20px;
+}
+
+.public-project > p:not(.public-kicker) {
+  color: var(--page-muted);
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.public-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.public-tags span {
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--page-accent) 10%, transparent);
+  color: var(--page-accent);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.public-actions {
+  margin-top: 20px;
+}
+
+.public-actions a {
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.public-skills {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.public-footer {
+  padding: 28px 0;
+  border-top: 1px solid var(--page-border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--page-muted);
+  font-size: 13px;
+}
+
+.public-state {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  padding: 25px;
+  background: #0b0d14;
+  color: #f0f0f5;
+  text-align: center;
+}
+
+.public-state a {
+  color: #b3a8ff;
+}
+
+/* Second distinct theme */
+.public-page.cyberpunk {
+  --page-bg: #080e12;
+  --page-text: #e4fff7;
+  --page-muted: #a2bdb8;
+  --page-card: #101b20;
+  --page-border: #24514a;
+  --page-accent: #64f7cd;
+  font-family: "Courier New", monospace;
+}
+
+.cyberpunk .public-brand {
+  color: var(--page-accent);
+}
+
+.cyberpunk .public-hero h1 {
+  text-shadow: 0 0 24px #64f7cd20;
+}
+
+.cyberpunk .public-project,
+.cyberpunk .public-skills article {
+  border-radius: 3px;
+  box-shadow: 5px 5px 0 #15352f;
+}
+
+.cyberpunk .public-tags span {
+  border-radius: 2px;
+}
+
+.cyber-status {
+  color: var(--page-accent);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.cyber-cursor {
+  color: var(--page-accent);
+}
+
+@media (max-width: 700px) {
+  .public-page {
+    padding: 0 20px;
+  }
+
+  .public-header {
+    align-items: flex-start;
+    padding: 22px 0;
+  }
+
+  .public-header nav {
+    justify-content: flex-end;
+  }
+
+  .public-project-grid,
+  .public-skills {
+    grid-template-columns: 1fr;
+  }
+
+  .public-hero h1 {
+    letter-spacing: -2px;
+  }
+}

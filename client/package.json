@@ -16,7 +16,7 @@
     "react-dom": "^19.2.8",
     "react-helmet-async": "^3.0.0",
     "react-hook-form": "^7.91.0",
-    "react-router-dom": "^7.18.4",
+    "react-router-dom": "^7.18.5",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

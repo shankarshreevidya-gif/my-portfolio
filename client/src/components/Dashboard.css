@@ -1,0 +1,382 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #e9eaf2;
+  background: #0b0d14;
+}
+
+.cf-auth,
+.cf-dashboard {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top left, #182044 0, transparent 42%),
+    #0b0d14;
+  color: #e9eaf2;
+}
+
+.cf-auth {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.cf-auth-card {
+  width: min(100%, 420px);
+  padding: 36px;
+  border: 1px solid #292d42;
+  border-radius: 22px;
+  background: rgba(19, 22, 35, 0.96);
+  box-shadow: 0 24px 90px #0005;
+}
+
+.cf-auth-card h1,
+.cf-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cf-auth-card h1 span,
+.cf-logo span {
+  color: #9b8cff;
+}
+
+.cf-auth-card > p {
+  color: #9ba2b9;
+}
+
+.cf-eyebrow {
+  color: #a99bff !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.cf-auth label,
+.cf-editor label {
+  display: block;
+  margin: 17px 0 7px;
+  color: #c8cce0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cf-auth input,
+.cf-editor input:not([type="radio"]),
+.cf-editor textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #30344a;
+  border-radius: 9px;
+  background: #101320;
+  color: #f4f4ff;
+  font: inherit;
+  outline: none;
+}
+
+.cf-auth input:focus,
+.cf-editor input:focus,
+.cf-editor textarea:focus {
+  border-color: #9b8cff;
+  box-shadow: 0 0 0 3px #9b8cff20;
+}
+
+.cf-editor input[readonly] {
+  opacity: 0.7;
+}
+
+.cf-editor small {
+  color: #9097ad;
+}
+
+.cf-primary,
+.cf-secondary,
+.cf-text-button,
+.cf-remove {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cf-primary {
+  background: linear-gradient(110deg, #8b7aff, #b08cff);
+  color: #111020;
+}
+
+.cf-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.cf-auth .cf-primary {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.cf-secondary {
+  background: #22263a;
+  color: #e5e5f5;
+  border: 1px solid #363b54;
+}
+
+.cf-secondary:hover {
+  background: #303550;
+}
+
+.cf-text-button {
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  color: #b3a8ff;
+}
+
+.cf-message {
+  color: #b6d9c1;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.cf-dashboard {
+  padding: 0 5% 60px;
+}
+
+.cf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 82px;
+  border-bottom: 1px solid #25283a;
+}
+
+.cf-logo {
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.cf-header > div {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.cf-public-link {
+  color: #c4baff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.cf-heading {
+  padding: 40px 0 28px;
+}
+
+.cf-heading h1 {
+  margin: 10px 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -1.5px;
+}
+
+.cf-heading > p:last-child {
+  color: #969db4;
+}
+
+.cf-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.cf-editor {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.cf-panel,
+.cf-preview {
+  padding: 24px;
+  border: 1px solid #292d42;
+  border-radius: 16px;
+  background: rgba(18, 21, 34, 0.94);
+}
+
+.cf-panel h2,
+.cf-preview h3 {
+  margin-top: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.cf-panel h2 {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.cf-panel textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.cf-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf-section-heading h3 {
+  font-size: 14px;
+}
+
+.cf-project-form {
+  padding: 18px 0;
+  border-top: 1px solid #2a2e41;
+}
+
+.cf-remove {
+  color: #ffaaaa;
+  background: #4a252d;
+  font-size: 12px;
+}
+
+.cf-theme-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.cf-theme-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #363b54;
+  border-radius: 9px;
+}
+
+.cf-theme-options input {
+  accent-color: #a99bff;
+}
+
+.cf-save {
+  width: 100%;
+  padding: 15px;
+}
+
+.cf-preview {
+  position: sticky;
+  top: 20px;
+  min-height: 350px;
+  overflow-wrap: anywhere;
+}
+
+.cf-preview h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.cf-preview > p:not(.cf-eyebrow):not(.cf-preview-foot) {
+  color: #a9aec1;
+  line-height: 1.8;
+}
+
+.cf-preview-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.cf-preview-links a {
+  color: #b7aaff;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.cf-preview h3 {
+  margin-top: 28px;
+  font-size: 14px;
+}
+
+.cf-theme-pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #52477f;
+  border-radius: 20px;
+  color: #c9bdff;
+  font-size: 12px;
+}
+
+.cf-preview-project {
+  margin-top: 12px;
+  padding: 14px;
+  border: 1px solid #30344a;
+  border-radius: 10px;
+}
+
+.cf-preview-project p {
+  color: #a9aec1;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cf-preview-foot {
+  margin-top: 30px;
+  color: #9097ad;
+  font-size: 11px;
+}
+
+.cf-preview-cyber {
+  border-color: #39766d;
+  background: linear-gradient(150deg, #102722, #111421 65%);
+}
+
+.cf-preview-cyber .cf-eyebrow,
+.cf-preview-cyber h2 {
+  color: #73fbd3;
+}
+
+@media (max-width: 850px) {
+  .cf-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-preview {
+    position: static;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .cf-dashboard {
+    padding: 0 16px 40px;
+  }
+
+  .cf-header {
+    align-items: flex-start;
+    padding: 18px 0;
+  }
+
+  .cf-header > div {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .cf-panel,
+  .cf-preview,
+  .cf-auth-card {
+    padding: 18px;
+  }
+}
