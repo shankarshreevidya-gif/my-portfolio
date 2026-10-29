@@ -4,7 +4,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
@@ -51,7 +50,7 @@ app.post("/api/auth/register", async (req, res) => {
       });
     }
 
-    if (password.length < 8) {
+    if (String(password).length < 8) {
       return res.status(400).json({
         message: "Password must be at least 8 characters.",
       });
@@ -259,7 +258,7 @@ app.put("/api/me", authenticate, async (req, res) => {
   }
 });
 
-// Public portfolio (email and password hash stay private)
+// Public portfolio
 app.get("/api/users/:username", async (req, res) => {
   try {
     const User = require("./models/User");
@@ -284,22 +283,7 @@ app.get("/api/users/:username", async (req, res) => {
   }
 });
 
-// Nodemailer transporter
-function createMailTransporter() {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    throw new Error("Gmail environment variables are not configured.");
-  }
-
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD.replace(/\s/g, ""),
-    },
-  });
-}
-
-// Contact form: send message to portfolio owner
+// Send email using the Resend HTTPS API
 app.post("/api/users/:username/contact", async (req, res) => {
   try {
     const User = require("./models/User");
@@ -322,6 +306,13 @@ app.post("/api/users/:username/contact", async (req, res) => {
       });
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM_EMAIL;
+
+    if (!apiKey || !fromEmail) {
+      throw new Error("Resend environment variables are not configured.");
+    }
+
     const username = req.params.username.toLowerCase();
 
     const owner = await User.findOne({ username }).select(
@@ -334,23 +325,38 @@ app.post("/api/users/:username/contact", async (req, res) => {
       });
     }
 
-    const transporter = createMailTransporter();
-
-    await transporter.sendMail({
-      from: `"CodeFolio Contact" <${process.env.GMAIL_USER}>`,
-      to: owner.email,
-      replyTo: email.trim(),
-      subject: `New CodeFolio message for ${owner.name}`,
-      text: [
-        `Portfolio owner: ${owner.name}`,
-        `Portfolio username: ${owner.username}`,
-        `Sender name: ${name.trim()}`,
-        `Sender email: ${email.trim()}`,
-        "",
-        "Message:",
-        message.trim(),
-      ].join("\n"),
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [owner.email],
+        reply_to: email.trim(),
+        subject: `New CodeFolio message for ${owner.name}`,
+        text: [
+          `Portfolio owner: ${owner.name}`,
+          `Portfolio username: ${owner.username}`,
+          `Sender name: ${name.trim()}`,
+          `Sender email: ${email.trim()}`,
+          "",
+          "Message:",
+          message.trim(),
+        ].join("\n"),
+      }),
     });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      console.error("Resend API error:", response.status, result);
+
+      return res.status(502).json({
+        message: "Email service could not send your message.",
+      });
+    }
 
     return res.json({
       success: true,
@@ -365,11 +371,9 @@ app.post("/api/users/:username/contact", async (req, res) => {
   }
 });
 
-// Start server only after MongoDB connects
+// Start server after MongoDB connects
 if (!process.env.MONGODB_URI || !process.env.JWT_SECRET) {
-  console.error(
-    "Missing MONGODB_URI or JWT_SECRET in environment."
-  );
+  console.error("Missing MONGODB_URI or JWT_SECRET in environment.");
   process.exit(1);
 }
 
